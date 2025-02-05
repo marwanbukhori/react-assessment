@@ -1,34 +1,47 @@
-import { useSelector } from 'react-redux';
+import { useSelector } from "react-redux";
 import {
-  LineChart,
-  Line,
   BarChart,
   Bar,
-  PieChart,
-  Pie,
   XAxis,
   YAxis,
   CartesianGrid,
   Tooltip,
   Legend,
-  Cell,
-} from 'recharts';
+  ResponsiveContainer,
+} from "recharts";
 
 export const SalesBarChart = () => {
-    const data = useSelector((state) => state.chart.barChartData);
-    
-    return (
-      <div className="p-4 bg-white rounded-lg shadow-md">
-        <h2 className="text-xl font-semibold mb-4">Quarterly Sales Comparison</h2>
-        <BarChart width={600} height={300} data={data}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="category" />
-          <YAxis />
-          <Tooltip />
+  const data = useSelector((state: any) => state.chart.barChartData);
+
+  return (
+    <div className="aspect-[4/3] w-full">
+      <ResponsiveContainer width="100%" height="100%">
+        <BarChart
+          data={data}
+          margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+        >
+          <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
+          <XAxis
+            dataKey="category"
+            stroke="hsl(var(--foreground))"
+            tick={{ fill: "hsl(var(--muted-foreground))" }}
+          />
+          <YAxis
+            stroke="hsl(var(--foreground))"
+            tick={{ fill: "hsl(var(--muted-foreground))" }}
+          />
+          <Tooltip
+            contentStyle={{
+              backgroundColor: "hsl(var(--background))",
+              borderColor: "hsl(var(--border))",
+              color: "hsl(var(--foreground))",
+            }}
+          />
           <Legend />
-          <Bar dataKey="online" fill="#8884d8" />
-          <Bar dataKey="offline" fill="#82ca9d" />
+          <Bar dataKey="online" fill="hsl(var(--chart-1))" />
+          <Bar dataKey="offline" fill="hsl(var(--chart-2))" />
         </BarChart>
-      </div>
-    );
-  };
+      </ResponsiveContainer>
+    </div>
+  );
+};
