@@ -104,3 +104,18 @@
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
+
+.react-grid-item {
+  transition: all 200ms ease;
+  transition-property: left, top, transform;
+}
+
+.react-grid-item.resizing {
+  transition: none !important;
+  z-index: 1;
+}
+
+.react-grid-item.react-grid-placeholder {
+  background: hsl(var(--primary) / 0.2);
+  transition: all 200ms ease;
+}
